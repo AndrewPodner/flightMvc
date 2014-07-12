@@ -1,0 +1,8 @@
+<phpunit>
+    <filter>
+        <blacklist>
+            <directory suffix=".php">../libraries</directory>
+            <directory suffix=".php">./</directory>
+        </blacklist>
+    </filter>
+</phpunit>

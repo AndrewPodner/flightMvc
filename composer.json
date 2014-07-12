@@ -1,0 +1,39 @@
+{
+    "minimum-stability": "dev",
+    "name": "flight-base-mvc-app",
+    "version": "0.1.0",
+    "config": {
+        "vendor-dir": "libraries"
+    },
+
+    "repositories": {
+        "jquery" : {
+            "type": "package",
+            "package": {
+                "name": "jquery",
+                "version": "1.10.2",
+                "dist": {
+                    "url": "http://code.jquery.com/jquery-1.10.2.min.js",
+                    "type": "file"
+                }
+            }
+        }
+    },
+    "require": {
+        "mikecao/flight": "dev-master",
+        "jquery": "1.10.2"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "4.1.*",
+        "phpunit/phpunit-selenium": ">=1.2",
+        "phing/phing": "2.*"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "app": "src/",
+            "core": "src/"
+        }
+    }
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="FlightMVC"
+         default="pre-check"
+         basedir="./"
+         description="Base MVC System For Development">
+
+    <fileset id="sourcecode" dir="./">
+        <include name="**/*.php" />
+        <exclude name="tests/**/*.php"/>
+        <exclude name="libraries/**/*.php"/>
+    </fileset>
+
+    <target name="pre-check">
+
+        <echo msg="Looking for broken files..." />
+
+        <phplint level="verbose" haltonfailure="true">
+            <fileset refid="sourcecode"/>
+        </phplint>
+
+        <echo msg="Copy-Paste Detector Check Beginning..." />
+        <phpcpd>
+            <formatter type="pmd" outfile="error_log/cpd_report.xml" />
+            <fileset refid="sourcecode"/>
+        </phpcpd>
+
+        <composer command="update" />
+
+        <echo msg="Moving jQuery into the webroot..." />
+        <delete dir="web/scripts/jquery" />
+        <move file="libraries/jquery" todir="web/scripts" />
+    </target>
+
+
+    <target name="test">
+        <exec dir="tests" command="../libraries/bin/phpunit --coverage-html ./coverage ./" />
+    </target>
+
+    <target name="version">
+        <input propertyName="release_option" defaultValue="BugFix" validargs="Major,Minor,BugFix" promptChar=":">
+            Please choose a build type
+        </input>
+        <version releasetype="${release_option}" file="version.txt" property="version.number"/>
+        <echo message="Building ${version.number}" />
+    </target>
+
+    <target name="build" depends="pre-check,version" >
+
+    </target>
+
+
+
+</project>

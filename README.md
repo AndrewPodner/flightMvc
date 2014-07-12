@@ -1,4 +1,3 @@
-flightMvc
-=========
+#Flight MVC
 
-this is my mod to the Flight Microframework to add basic MVC to it
+Basic MVC add-on with full unit testing for the Flight Micro-framework.
